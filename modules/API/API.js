@@ -7,6 +7,7 @@ import {
 } from '../../react/features/analytics';
 import {
     sendTones,
+    setFollowMe,
     setPassword,
     setSubject
 } from '../../react/features/base/conference';
@@ -187,6 +188,10 @@ function initCommands() {
             logger.debug('Set video quality command received');
             sendAnalytics(createApiEvent('set.video.quality'));
             APP.store.dispatch(setVideoQuality(frameHeight));
+        },
+        'everyone-follows-me': enabled => {
+            logger.log('Set follow me. API command received');
+            APP.store.dispatch(setFollowMe(enabled));
         }
     };
     transport.on('event', ({ data, name }) => {
