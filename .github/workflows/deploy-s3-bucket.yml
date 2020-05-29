@@ -1,0 +1,43 @@
+# deploy only on reelase
+name: deploy-s3-bucket-to-s3
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  compile-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install npm packages
+        run: |
+          npm i
+
+      - name: Compile code
+        run: |
+          make compile
+
+      - name: Prepare code for deploy
+        run: |
+          make deploy
+
+      - name: Build source package
+        run: |
+          make source-package
+
+      - name: Upload source package to S3 bucket
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: "wm-jitsi-meet/${{ GITHUB_SHA }}"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "eu-west-1"
+          SOURCE_DIR: "jitsi-meet.tar.bz2"
