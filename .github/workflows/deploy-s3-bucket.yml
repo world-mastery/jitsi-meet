@@ -2,9 +2,8 @@
 name: deploy-s3-bucket-to-s3
 
 on:
-  push
-  # release:
-  #   types: [created]
+  release:
+    types: [created]
 
 jobs:
   compile-and-upload:
