@@ -1,9 +1,9 @@
 # deploy only on reelase
 name: deploy-s3-bucket-to-s3
 
-on:
-  release:
-    types: [created]
+on: push
+  # release:
+  #   types: [created]
 
 jobs:
   compile-and-upload:
