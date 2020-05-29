@@ -1,7 +1,8 @@
 # deploy only on reelase
 name: deploy-s3-bucket-to-s3
 
-on: push
+on:
+  push
   # release:
   #   types: [created]
 
@@ -36,7 +37,7 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --delete
         env:
-          AWS_S3_BUCKET: "wm-jitsi-meet/${{ GITHUB_SHA }}"
+          AWS_S3_BUCKET: "wm-jitsi-meet/${GITHUB_SHA}"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: "eu-west-1"
