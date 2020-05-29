@@ -84,3 +84,5 @@ android/app/google-services.json
 ios/app/dropbox.key
 ios/app/GoogleService-Info.plist
 
+# Generated source file
+s3-package
