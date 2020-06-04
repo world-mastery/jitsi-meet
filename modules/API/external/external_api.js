@@ -31,6 +31,7 @@ const commands = {
     displayName: 'display-name',
     e2eeKey: 'e2ee-key',
     email: 'email',
+    everyoneFollowsMe: 'everyone-follows-me',
     hangup: 'video-hangup',
     muteEveryone: 'mute-everyone',
     password: 'password',
