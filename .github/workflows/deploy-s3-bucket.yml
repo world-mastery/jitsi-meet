@@ -34,6 +34,10 @@ jobs:
         run: |
           make deploy
 
+      - name: Add version package
+        run: |
+            node version.js ${GITHUB_REF##*/}
+
       - name: Build source package
         run: |
           make source-package

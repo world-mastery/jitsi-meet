@@ -86,6 +86,7 @@ dev: deploy-init deploy-css deploy-rnnoise-binary deploy-lib-jitsi-meet deploy-l
 
 source-package:
 	mkdir -p source_package/jitsi-meet/css && mkdir s3-package && \
+	cp build/external_api.min.js s3-package/ && \
 	cp -r *.js *.html resources/*.txt connection_optimization favicon.ico fonts images libs static sounds LICENSE lang source_package/jitsi-meet && \
 	cp css/all.css source_package/jitsi-meet/css && \
 	(cd source_package ; tar cjf ../s3-package/jitsi-meet.tar.bz2 jitsi-meet) && \
