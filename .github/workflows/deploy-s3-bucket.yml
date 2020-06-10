@@ -34,6 +34,10 @@ jobs:
         run: |
           make deploy
 
+      - name: WM config
+        run: |
+            node wm-config.js
+
       - name: Add version package
         run: |
             node version.js ${GITHUB_REF##*/}
